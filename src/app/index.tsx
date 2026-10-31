@@ -6,7 +6,6 @@ import { ThemedView } from "@/components/shared/themed-view";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 
 export default function HomeScreen() {
-  const name = "james";
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
