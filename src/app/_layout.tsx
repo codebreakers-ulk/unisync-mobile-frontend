@@ -6,7 +6,7 @@ import { useColorScheme } from "react-native";
 
 import AppTabs from "@/components/app-tabs";
 
-SplashScreen.preventAutoHideAsync();
+void SplashScreen.preventAutoHideAsync();
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();

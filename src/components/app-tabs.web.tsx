@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import {
   Tabs,
   TabList,
@@ -15,10 +16,14 @@ import { ExternalLink } from "./shared/external-link";
 import { ThemedText } from "./shared/themed-text";
 import { ThemedView } from "./shared/themed-view";
 
+type TabButtonProps = Omit<TabTriggerSlotProps, "ref"> & {
+  ref?: ComponentProps<typeof Pressable>["ref"];
+};
+
 export default function AppTabs() {
   return (
     <Tabs>
-      <TabSlot style={{ height: "100%" }} />
+      <TabSlot style={styles.tabSlot} />
       <TabList asChild>
         <CustomTabList>
           <TabTrigger name="home" href="/" asChild>
@@ -37,7 +42,7 @@ export function TabButton({
   children,
   isFocused,
   ...props
-}: TabTriggerSlotProps) {
+}: TabButtonProps) {
   return (
     <Pressable {...props} style={({ pressed }) => pressed && styles.pressed}>
       <ThemedView
@@ -84,40 +89,43 @@ export function CustomTabList(props: TabListProps) {
 }
 
 const styles = StyleSheet.create({
-  tabListContainer: {
-    position: "absolute",
-    width: "100%",
-    padding: Spacing.three,
-    justifyContent: "center",
+  brandText: {
+    marginRight: "auto",
+  },
+  externalPressable: {
     alignItems: "center",
     flexDirection: "row",
+    gap: Spacing.one,
+    justifyContent: "center",
+    marginLeft: Spacing.three,
   },
   innerContainer: {
-    paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.five,
+    alignItems: "center",
     borderRadius: Spacing.five,
     flexDirection: "row",
-    alignItems: "center",
     flexGrow: 1,
     gap: Spacing.two,
     maxWidth: MaxContentWidth,
-  },
-  brandText: {
-    marginRight: "auto",
+    paddingHorizontal: Spacing.five,
+    paddingVertical: Spacing.two,
   },
   pressed: {
     opacity: 0.7,
   },
   tabButtonView: {
-    paddingVertical: Spacing.one,
-    paddingHorizontal: Spacing.three,
     borderRadius: Spacing.three,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.one,
   },
-  externalPressable: {
+  tabListContainer: {
+    alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
-    gap: Spacing.one,
-    marginLeft: Spacing.three,
+    padding: Spacing.three,
+    position: "absolute",
+    width: "100%",
+  },
+  tabSlot: {
+    height: "100%",
   },
 });
