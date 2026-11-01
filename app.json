@@ -1,14 +1,15 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "UniSync",
+    "slug": "unisync",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/logo-single-no-bg.png",
+    "scheme": "unisync",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/logo-single-no-bg.png",
+      "bundleIdentifier": "com.oplanojames.unisync"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,22 +18,30 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.oplanojames.unisync"
     },
     "web": {
       "bundler": "metro",
       "output": "server",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/ios-icon-default.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
-        {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
-        }
+        [
+          "expo-splash-screen",
+          {
+            "backgroundColor": "#0051D5",
+            "image": "./assets/images/iOS.png",
+            "imageWidth": 200,
+            "dark": {
+              "image": "./assets/images/iOS.png",
+              "backgroundColor": "#0051D5"
+            }
+          }
+        ]
       ],
       "expo-notifications",
       "expo-secure-store"

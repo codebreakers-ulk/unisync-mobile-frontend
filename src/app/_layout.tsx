@@ -2,7 +2,7 @@ import "../global.css";
 
 import { DarkTheme, DefaultTheme, ThemeProvider } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useColorScheme } from "react-native";
+import { StyleSheet, useColorScheme, View } from "react-native";
 
 import AppTabs from "@/components/app-tabs";
 
@@ -12,7 +12,15 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <AppTabs />
+      <View style={styles.container} onLayout={SplashScreen.hideAsync}>
+        <AppTabs />
+      </View>
     </ThemeProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
