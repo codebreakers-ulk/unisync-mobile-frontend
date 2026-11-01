@@ -1,47 +1,68 @@
-import { Platform, StyleSheet, Text, type TextProps } from 'react-native';
+import { Platform, StyleSheet, Text, type TextProps } from "react-native";
+import { cssInterop } from "nativewind";
 
-import { Fonts, ThemeColor } from '@/constants/theme';
-import { useTheme } from '@/hooks/use-theme';
+import { Fonts, ThemeColor } from "@/constants/theme";
+import { useTheme } from "@/hooks/use-theme";
 
 export type ThemedTextProps = TextProps & {
-  type?: 'default' | 'title' | 'small' | 'smallBold' | 'subtitle' | 'link' | 'linkPrimary' | 'code';
+  type?:
+    | "default"
+    | "title"
+    | "small"
+    | "smallBold"
+    | "subtitle"
+    | "link"
+    | "linkPrimary"
+    | "code";
   themeColor?: ThemeColor;
 };
 
-const linkPrimaryColor = '#3c87f7';
+const linkPrimaryColor = "#3c87f7";
 
-export function ThemedText({ style, type = 'default', themeColor, ...rest }: ThemedTextProps) {
+export function ThemedText({
+  style,
+  type = "default",
+  themeColor,
+  ...rest
+}: ThemedTextProps) {
   const theme = useTheme();
 
-  let typeStyle: (typeof styles)[NonNullable<ThemedTextProps['type']>];
+  let typeStyle: (typeof styles)[NonNullable<ThemedTextProps["type"]>];
   switch (type) {
-    case 'small':
+    case "small":
       typeStyle = styles.small;
       break;
-    case 'smallBold':
+    case "smallBold":
       typeStyle = styles.smallBold;
       break;
-    case 'title':
+    case "title":
       typeStyle = styles.title;
       break;
-    case 'subtitle':
+    case "subtitle":
       typeStyle = styles.subtitle;
       break;
-    case 'link':
+    case "link":
       typeStyle = styles.link;
       break;
-    case 'linkPrimary':
+    case "linkPrimary":
       typeStyle = styles.linkPrimary;
       break;
-    case 'code':
+    case "code":
       typeStyle = styles.code;
       break;
     default:
       typeStyle = styles.default;
   }
 
-  return <Text style={[{ color: theme[themeColor ?? 'text'] }, typeStyle, style]} {...rest} />;
+  return (
+    <Text
+      style={[{ color: theme[themeColor ?? "text"] }, typeStyle, style]}
+      {...rest}
+    />
+  );
 }
+
+cssInterop(ThemedText, { className: "style" });
 
 const styles = StyleSheet.create({
   code: {

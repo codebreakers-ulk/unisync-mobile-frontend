@@ -10,13 +10,10 @@ export default function HomeScreen() {
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ThemedView style={styles.heroSection}>
-          <ThemedText type="title" style={styles.title}>
+          <ThemedText type="title" className="text-center">
             Welcome to&nbsp;UniSync
           </ThemedText>
         </ThemedView>
-        <ThemedText className="text-lg font-bold text-red-500">
-          Hello, World!
-        </ThemedText>
       </SafeAreaView>
     </ThemedView>
   );
@@ -42,8 +39,5 @@ const styles = StyleSheet.create({
     maxWidth: MaxContentWidth,
     paddingBottom: BottomTabInset + Spacing.three,
     paddingHorizontal: Spacing.four,
-  },
-  title: {
-    textAlign: "center",
   },
 });
